@@ -1,9 +1,9 @@
 {
-    "name": "fuse-angular",
-    "version": "17.2.0",
-    "description": "Fuse - Angular Admin Template and Starter Project",
-    "author": "https://themeforest.net/user/srcn",
-    "license": "https://themeforest.net/licenses/standard",
+    "name": "front-end-sample",
+    "version": "1.0.0",
+    "description": "Front-end sample project",
+    "author": "",
+    "license": "",
     "private": true,
     "scripts": {
         "ng": "ng",
