@@ -19,22 +19,21 @@ export const appRoutes: Route[] = [
     // // location. This is a small convenience to keep all main routes together here on this file.
     // {path: 'signed-in-redirect', pathMatch : 'full', redirectTo: 'dashboards/project'},
 
-    // // Auth routes for guests
-    // {
-    //     path: '',
-    //     canMatch: [NoAuthGuard],
-    //     component: LayoutComponent,
-    //     data: {
-    //         layout: 'empty'
-    //     },
-    //     children: [
-    //         {path: 'confirmation-required', loadChildren: () => import('app/modules/auth/confirmation-required/confirmation-required.module').then(m => m.AuthConfirmationRequiredModule)},
-    //         {path: 'forgot-password', loadChildren: () => import('app/modules/auth/forgot-password/forgot-password.module').then(m => m.AuthForgotPasswordModule)},
-    //         {path: 'reset-password', loadChildren: () => import('app/modules/auth/reset-password/reset-password.module').then(m => m.AuthResetPasswordModule)},
-    //         {path: 'sign-in', loadChildren: () => import('app/modules/auth/sign-in/sign-in.module').then(m => m.AuthSignInModule)},
-    //         {path: 'sign-up', loadChildren: () => import('app/modules/auth/sign-up/sign-up.module').then(m => m.AuthSignUpModule)}
-    //     ]
-    // },
+    // Auth routes for guests
+    {
+        path: '',
+        // canMatch: [NoAuthGuard],
+        component: LayoutComponent,
+        data: {
+            layout: 'empty'
+        },
+        children: [
+            {path: 'confirmation-required', loadChildren: () => import('app/modules/auth/confirmation-required/confirmation-required.module').then(m => m.AuthConfirmationRequiredModule)},
+            {path: 'forgot-password', loadChildren: () => import('app/modules/auth/forgot-password/forgot-password.module').then(m => m.AuthForgotPasswordModule)},
+            {path: 'reset-password', loadChildren: () => import('app/modules/auth/reset-password/reset-password.module').then(m => m.AuthResetPasswordModule)},
+            {path: 'sign-in', loadChildren: () => import('app/modules/auth/sign-in/sign-in.module').then(m => m.AuthSignInModule)}
+        ]
+    },
 
     // // Auth routes for authenticated users
     // {
