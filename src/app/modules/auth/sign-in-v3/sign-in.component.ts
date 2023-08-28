@@ -1,17 +1,30 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, NgForm, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+
 import { fuseAnimations } from '@fuse/animations';
-import { FuseAlertType } from '@fuse/components/alert';
+import { FuseCardModule } from '@fuse/components/card';
+import { FuseAlertModule, FuseAlertType } from '@fuse/components/alert';
+
 import { AuthService } from 'app/core/auth/auth.service';
+import { MaterialModule } from 'app/shared/modules/material.module';
+import { SharedModule } from 'app/shared/shared.module';
 
 @Component({
     selector     : 'auth-sign-in',
     templateUrl  : './sign-in.component.html',
     encapsulation: ViewEncapsulation.None,
-    animations   : fuseAnimations
+    animations   : fuseAnimations,
+    standalone: true,
+    imports: [
+        SharedModule,
+        MaterialModule,
+        FuseCardModule,
+        FuseAlertModule,
+        RouterModule
+    ]
 })
-export class AuthSignInComponent implements OnInit
+export default class AuthSignInComponent implements OnInit
 {
     @ViewChild('signInNgForm') signInNgForm: NgForm;
 

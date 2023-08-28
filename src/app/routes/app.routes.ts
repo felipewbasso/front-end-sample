@@ -34,7 +34,11 @@ export const appRoutes: Routes = [
             {
                 path: 'sign-in-v2',
                 loadComponent: () => import('app/modules/auth/sign-in-v2/sign-in.component')
-            }
+            },
+            {
+                path: 'sign-in-v3',
+                loadComponent: () => import('app/modules/auth/sign-in-v3/sign-in.component')
+            },
         ]
     }
 
