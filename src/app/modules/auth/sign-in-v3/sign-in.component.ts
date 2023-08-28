@@ -10,6 +10,8 @@ import { AuthService } from 'app/core/auth/auth.service';
 import { MaterialModule } from 'app/shared/modules/material.module';
 import { SharedModule } from 'app/shared/shared.module';
 
+import { AuthSignInFormService } from './services/sign-in-form.service';
+
 @Component({
     selector     : 'auth-sign-in',
     templateUrl  : './sign-in.component.html',
@@ -22,6 +24,9 @@ import { SharedModule } from 'app/shared/shared.module';
         FuseCardModule,
         FuseAlertModule,
         RouterModule
+    ],
+    providers: [
+        AuthSignInFormService
     ]
 })
 export default class AuthSignInComponent implements OnInit
@@ -35,6 +40,8 @@ export default class AuthSignInComponent implements OnInit
     signInForm: UntypedFormGroup;
     showAlert: boolean = false;
 
+    public readonly form = this._formService.form;
+
     /**
      * Constructor
      */
@@ -42,7 +49,8 @@ export default class AuthSignInComponent implements OnInit
         private _activatedRoute: ActivatedRoute,
         private _authService: AuthService,
         private _formBuilder: UntypedFormBuilder,
-        private _router: Router
+        private _formService: AuthSignInFormService,
+        private _router: Router,
     )
     {
     }
@@ -57,10 +65,16 @@ export default class AuthSignInComponent implements OnInit
     ngOnInit(): void
     {
         // Create the form
-        this.signInForm = this._formBuilder.group({
-            email     : ['hughes.brian@company.com', [Validators.required, Validators.email]],
-            password  : ['admin', Validators.required],
-            rememberMe: ['']
+        // this.signInForm = this._formBuilder.group({
+        //     email     : ['hughes.brian@company.com', [Validators.required, Validators.email]],
+        //     password  : ['admin', Validators.required],
+        //     rememberMe: ['']
+        // });
+
+        this._formService.patchValue({
+            email: 'hughes.brian@company.com',
+            password: 'admin',
+            rememberMe: false
         });
     }
 
@@ -73,6 +87,12 @@ export default class AuthSignInComponent implements OnInit
      */
     signIn(): void
     {
+
+        const value = this._formService.getValue();
+
+        console.log('[FORM_VALUE]:', value);
+
+        return;
         // Return if the form is invalid
         if ( this.signInForm.invalid )
         {

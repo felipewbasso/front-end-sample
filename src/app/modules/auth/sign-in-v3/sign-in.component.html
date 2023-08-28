@@ -39,8 +39,8 @@
             <!-- Sign in form -->
             <form
                 class="mt-8"
-                [formGroup]="signInForm"
-                #signInNgForm="ngForm">
+                [formGroup]="form"
+                (ngSubmit)="signIn()">
 
                 <!-- Email field -->
                 <mat-form-field class="w-full">
@@ -49,11 +49,8 @@
                         id="email"
                         matInput
                         [formControlName]="'email'">
-                    <mat-error *ngIf="signInForm.get('email').hasError('required')">
-                        Email address is required
-                    </mat-error>
-                    <mat-error *ngIf="signInForm.get('email').hasError('email')">
-                        Please enter a valid email address
+                    <mat-error *ngIf="form.get('email').errors">
+                        Email address is invalid!
                     </mat-error>
                 </mat-form-field>
 
@@ -103,14 +100,13 @@
                 <button
                     class="fuse-mat-button-large w-full mt-6"
                     mat-flat-button
-                    [color]="'primary'"
-                    [disabled]="signInForm.disabled"
-                    (click)="signIn()">
-                    <span *ngIf="!signInForm.disabled">
+                    type="submit"
+                    [color]="'primary'">
+                    <span>
                         Sign in
                     </span>
                     <mat-progress-spinner
-                        *ngIf="signInForm.disabled"
+                        *ngIf="false"
                         [diameter]="24"
                         [mode]="'indeterminate'"></mat-progress-spinner>
                 </button>
