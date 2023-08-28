@@ -19,7 +19,7 @@ const routerConfig: ExtraOptions = {
 
 @NgModule({
     declarations: [
-        AppComponent
+        // AppComponent
     ],
     imports     : [
         BrowserModule,
@@ -38,7 +38,7 @@ const routerConfig: ExtraOptions = {
         LayoutModule
     ],
     bootstrap   : [
-        AppComponent
+        // AppComponent
     ]
 })
 export class AppModule
