@@ -40,6 +40,20 @@ export const appRoutes: Routes = [
                 loadComponent: () => import('app/modules/auth/sign-in-v3/sign-in.component')
             },
         ]
-    }
+    },
+    {
+        path: '',
+        // canMatch: [NoAuthGuard],
+        component: LayoutComponent,
+        children: [
+            {
+                path: 'home',
+                loadChildren: () =>
+                    import('app/modules/home/home.module').then(
+                        (m) => m.HomeModule
+                    ),
+            },
+        ],
+    },
 
 ];
