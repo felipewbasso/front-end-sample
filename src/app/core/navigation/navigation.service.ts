@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, ReplaySubject, tap } from 'rxjs';
+import { Observable, ReplaySubject, startWith, tap } from 'rxjs';
 import { Navigation } from 'app/core/navigation/navigation.types';
 
 @Injectable({
@@ -26,7 +26,15 @@ export class NavigationService
      */
     get navigation$(): Observable<Navigation>
     {
-        return this._navigation.asObservable();
+        return this._navigation.asObservable()
+            .pipe(
+                startWith(<Navigation>{
+                    compact: [],
+                    default: [],
+                    futuristic: [],
+                    horizontal: [],
+                })
+            );
     }
 
     // -----------------------------------------------------------------------------------------------------
