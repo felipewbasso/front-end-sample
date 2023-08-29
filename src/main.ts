@@ -29,7 +29,7 @@ bootstrapApplication(AppComponent, {
 		 * Root navigation
 		 */
         provideRouter(appRoutes,
-            withPreloading(PreloadAllModules)
+            // withPreloading(PreloadAllModules)
         ),
 
         /**
