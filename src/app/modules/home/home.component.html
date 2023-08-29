@@ -1,0 +1,23 @@
+<div class="p-8">
+
+    <div class="flex items-center gap-4">
+        <span class="font-semibold text-2xl">
+            Homepage!
+        </span>
+        <a mat-flat-button [color]="'primary'" [routerLink]="'x'">
+            Abrir detalhe
+        </a>
+    </div>
+
+    <div class="border border-gray-300 rounded-md p-6 w-full min-h-20 mt-6">
+
+        <p class="w-full text-center mb-4">
+            Roteamento
+        </p>
+
+        <router-outlet></router-outlet>
+
+    </div>
+
+
+</div>
