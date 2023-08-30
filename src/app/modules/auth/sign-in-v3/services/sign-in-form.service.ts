@@ -16,22 +16,18 @@ type FormType = {
 @Injectable()
 export class AuthSignInFormService {
 
-    private readonly _form = this._buildForm();
+    public readonly form = this._buildForm();
 
     constructor(
         private _fb: FormBuilder
     ) { }
 
-    public get form(): FormGroup<FormType> {
-        return this._form;
-    }
-
     public getValue(): FormValue {
 
         const value: FormValue = {
-            email: this._form.get('email').value,
-            password: this._form.get('password').value,
-            rememberMe: this._form.get('rememberMe').value
+            email: this.form.get('email').value,
+            password: this.form.get('password').value,
+            rememberMe: this.form.get('rememberMe').value
         };
 
         return value;
@@ -42,7 +38,7 @@ export class AuthSignInFormService {
         if (!value)
             return;
 
-        this._form.patchValue({
+        this.form.patchValue({
             email: value.email,
             password: value.password,
             rememberMe: value.rememberMe
