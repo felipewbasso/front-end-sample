@@ -11,6 +11,8 @@ import { MaterialModule } from 'app/shared/modules/material.module';
 import { SharedModule } from 'app/shared/shared.module';
 
 import { AuthSignInFormService } from './services/sign-in-form.service';
+import { NgLoadingDirective } from 'app/shared/directives/ng-loading.directive';
+import { NgLoadingService } from 'app/shared/directives/ng-loading.service';
 
 @Component({
     selector     : 'auth-sign-in',
@@ -23,7 +25,8 @@ import { AuthSignInFormService } from './services/sign-in-form.service';
         MaterialModule,
         FuseCardModule,
         FuseAlertModule,
-        RouterModule
+        RouterModule,
+        NgLoadingDirective
     ],
     providers: [
         AuthSignInFormService
@@ -51,6 +54,7 @@ export default class AuthSignInComponent implements OnInit
         private _formBuilder: UntypedFormBuilder,
         private _formService: AuthSignInFormService,
         private _router: Router,
+        private _loadingService: NgLoadingService
     )
     {
     }
@@ -91,6 +95,16 @@ export default class AuthSignInComponent implements OnInit
         const value = this._formService.getValue();
 
         console.log('[FORM_VALUE]:', value);
+
+        const spinnerName = 'nome-do-spinner';
+
+        this._loadingService.start(spinnerName);
+
+        // setTimeout(() => {
+
+        //     this._loadingService.stop(spinnerName);
+
+        // }, 5000);
 
         return;
         // Return if the form is invalid
