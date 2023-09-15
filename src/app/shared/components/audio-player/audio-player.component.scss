@@ -1,0 +1,41 @@
+.audio-player-container {
+
+    .mdc-slider {
+
+        &__track {
+
+            &--active {
+                background-color: yellowgreen !important;
+
+                &_fill {
+                    border-color: green !important;
+                }
+            }
+        }
+
+        &__thumb {
+
+            &--with-indicator {
+                background-color: rgba(0, 128, 0, .15) !important;
+                border-radius: 50%;
+            }
+
+            &-knob {
+                border-color: green !important;
+            }
+
+            *[class*="focus-indicator"] {
+
+                *[class*="focus-ripple"] {
+                    background-color: green !important;
+                    opacity: .25;
+                }
+
+                *[class*="active-ripple"] {
+                    background-color: green !important;
+                    opacity: .35;
+                }
+            }
+        }
+    }
+}

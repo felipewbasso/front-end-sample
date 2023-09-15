@@ -1,0 +1,140 @@
+<div class="audio-player-container flex-auto flex flex-col p-0">
+
+    <!-- Title -->
+    <div class="flex text-current">
+
+        <div class="flex w-full items-center p-4">
+            <span>
+                audio-sem-nome.mp3
+            </span>
+        </div>
+
+    </div>
+
+    <!-- Progress -->
+    <div class="flex flex-row items-start">
+
+        <!-- Audio element -->
+        <audio
+            #audioPlayer
+            [src]="url | sanitizerUrl"
+            [preload]="'auto'"></audio>
+
+        <!-- Play button -->
+        <div class="flex items-center p-1">
+
+            <button
+                mat-icon-button
+                [matTooltip]="'Reproduzir'"
+                [disabled]="false">
+
+                <mat-icon
+                    *ngIf="true"
+                    class="text-current">
+                    play_arrow
+                </mat-icon>
+
+                <mat-icon
+                    *ngIf="false"
+                    class="text-current">
+                    pause
+                </mat-icon>
+
+            </button>
+
+        </div>
+
+        <div class="flex flex-auto flex-col">
+
+            <!-- Progress bar -->
+            <mat-slider
+                [disabled]="false"
+                [min]="0"
+                [max]="100"
+                [step]="1">
+                <input matSliderThumb>
+            </mat-slider>
+
+            <!-- Second line -->
+            <div class="flex items-center">
+
+                <!-- Time -->
+                <div class="flex">
+                    <span class="text-sm">
+                        00:00 / 00:00
+                    </span>
+                </div>
+
+                <!-- Download icon -->
+                <div class="flex ml-auto">
+                    <button
+                        mat-icon-button
+                        [matTooltip]="'Baixar áudio'">
+                        <mat-icon
+                            class="icon-size-5 text-current"
+                            [svgIcon]="'mat_outline:cloud_download'"></mat-icon>
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Toggle volume -->
+        <div class="flex items-center p-1">
+
+            <button mat-icon-button>
+                <mat-icon *ngIf="true" [matTooltip]="'Ativar som'">
+                    volume_off
+                </mat-icon>
+                <mat-icon *ngIf="false" [matTooltip]="'Desativar som'">
+                    volume_up
+                </mat-icon>
+            </button>
+
+        </div>
+
+        <!-- Velocity Menu -->
+        <div class="flex items-center p-1">
+
+            <!-- Select -->
+            <button
+                mat-flat-button
+                class="scale-75"
+                [matMenuTriggerFor]="velocityMenu"
+                [disabled]="false">
+                <span>
+                    1x
+                </span>
+            </button>
+
+            <!-- Values -->
+            <mat-menu #velocityMenu="matMenu">
+
+                <!-- 0.5x -->
+                <button mat-menu-item>
+                    <span>0.5x</span>
+                </button>
+
+                <!-- 1x -->
+                <button mat-menu-item>
+                    <span>1x</span>
+                </button>
+
+                <!-- 1.5x -->
+                <button mat-menu-item>
+                    <span>1.5x</span>
+                </button>
+
+                <!-- 2x -->
+                <button mat-menu-item>
+                    <span>2x</span>
+                </button>
+
+            </mat-menu>
+
+        </div>
+
+    </div>
+
+</div>
