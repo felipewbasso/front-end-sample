@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AudioPlayerComponent } from 'app/shared/components/audio-player/audio-player.component';
 
 import { SharedModule } from 'app/shared/shared.module';
 
@@ -7,9 +8,9 @@ import { SharedModule } from 'app/shared/shared.module';
     templateUrl: './test1.component.html',
     styleUrls: [],
     standalone: true,
-    imports: [SharedModule],
+    imports: [SharedModule, AudioPlayerComponent],
 })
 export class HomeTest1Component {
-    
+
     constructor() {}
 }
