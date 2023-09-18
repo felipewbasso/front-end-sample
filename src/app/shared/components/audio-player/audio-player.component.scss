@@ -1,39 +1,42 @@
 .audio-player-container {
 
-    .mdc-slider {
+    .custom-basic-slider {
 
-        &__track {
+        .mdc-slider {
 
-            &--active {
-                background-color: yellowgreen !important;
+            &__track {
 
-                &_fill {
+                &--active {
+                    background-color: yellowgreen !important;
+
+                    &_fill {
+                        border-color: green !important;
+                    }
+                }
+            }
+
+            &__thumb {
+
+                &--with-indicator {
+                    background-color: rgba(0, 128, 0, .15) !important;
+                    border-radius: 50%;
+                }
+
+                &-knob {
                     border-color: green !important;
                 }
-            }
-        }
 
-        &__thumb {
+                *[class*="focus-indicator"] {
 
-            &--with-indicator {
-                background-color: rgba(0, 128, 0, .15) !important;
-                border-radius: 50%;
-            }
+                    *[class*="focus-ripple"] {
+                        background-color: green !important;
+                        opacity: .25;
+                    }
 
-            &-knob {
-                border-color: green !important;
-            }
-
-            *[class*="focus-indicator"] {
-
-                *[class*="focus-ripple"] {
-                    background-color: green !important;
-                    opacity: .25;
-                }
-
-                *[class*="active-ripple"] {
-                    background-color: green !important;
-                    opacity: .35;
+                    *[class*="active-ripple"] {
+                        background-color: green !important;
+                        opacity: .35;
+                    }
                 }
             }
         }
