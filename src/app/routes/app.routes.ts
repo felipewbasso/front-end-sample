@@ -1,8 +1,33 @@
 import { Routes } from "@angular/router";
+
+import { AuthGuard } from "app/core/auth/guards/auth.guard";
+import { NoAuthGuard } from "app/core/auth/guards/noAuth.guard";
 import { LayoutComponent } from "app/layout/layout.component";
 
 export const appRoutes: Routes = [
 
+    /**
+     * Redirects
+     */
+    {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'home'
+    },
+    // Redirect signed-in user to the '/dashboards/project'
+    //
+    // After the user signs in, the sign-in page will redirect the user to the 'signed-in-redirect'
+    // path. Below is another redirection for that path to redirect the user to the desired
+    // location. This is a small convenience to keep all main routes together here on this file.
+    {
+        path: 'signed-in-redirect',
+        pathMatch : 'full',
+        redirectTo: 'home'
+    },
+
+    /**
+     * Auth routes
+     */
     {
         path: '',
         // canMatch: [NoAuthGuard],
@@ -11,6 +36,11 @@ export const appRoutes: Routes = [
             layout: 'empty'
         },
         children: [
+            {
+                path: 'sign-in',
+                loadChildren: () => import('app/modules/auth/sign-in/sign-in.module')
+                    .then(m => m.AuthSignInModule)
+            },
             {
                 path: 'confirmation-required',
                 loadChildren: () => import('app/modules/auth/confirmation-required/confirmation-required.module')
@@ -26,24 +56,33 @@ export const appRoutes: Routes = [
                 loadChildren: () => import('app/modules/auth/reset-password/reset-password.module')
                     .then(m => m.AuthResetPasswordModule)
             },
+        ]
+    },
+
+    /**
+     * Auth routes for authenticated users
+     */
+    {
+        path: '',
+        canMatch: [AuthGuard],
+        component: LayoutComponent,
+        data: {
+            layout: 'empty'
+        },
+        children: [
             {
-                path: 'sign-in',
-                loadChildren: () => import('app/modules/auth/sign-in/sign-in.module')
-                    .then(m => m.AuthSignInModule)
-            },
-            {
-                path: 'sign-in-v2',
-                loadComponent: () => import('app/modules/auth/sign-in-v2/sign-in.component')
-            },
-            {
-                path: 'sign-in-v3',
-                loadComponent: () => import('app/modules/auth/sign-in-v3/sign-in.component')
+                path: 'sign-out',
+                loadChildren: () => import('app/modules/auth/sign-out/sign-out.module').then(m => m.AuthSignOutModule)
             },
         ]
     },
+
+    /**
+     * Modules
+     */
     {
         path: '',
-        // canMatch: [NoAuthGuard],
+        canMatch: [AuthGuard],
         component: LayoutComponent,
         children: [
             {
