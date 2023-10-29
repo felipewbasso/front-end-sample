@@ -5,10 +5,15 @@ import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 
 import { Subject, takeUntil } from 'rxjs';
 
+import { UsuarioService } from './services/usuario.service';
+
 @Component({
     selector: 'app-usuario',
     templateUrl: './usuario.component.html',
     styleUrls: [],
+    providers: [
+        UsuarioService
+    ]
 })
 export class UsuarioComponent implements OnInit, OnDestroy {
 

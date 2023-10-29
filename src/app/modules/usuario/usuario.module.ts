@@ -8,6 +8,7 @@ import { usuarioRoutes } from './usuario.routing';
 
 import { UsuarioComponent } from './usuario.component';
 import { HomeSidebarModule } from './sidebar/sidebar.module';
+import { UsuarioListaComponent } from './sections/lista/lista.component';
 
 @NgModule({
     imports: [
@@ -18,7 +19,8 @@ import { HomeSidebarModule } from './sidebar/sidebar.module';
         HomeSidebarModule
     ],
     declarations: [
-        UsuarioComponent
+        UsuarioComponent,
+        UsuarioListaComponent
     ],
     exports: [],
 })

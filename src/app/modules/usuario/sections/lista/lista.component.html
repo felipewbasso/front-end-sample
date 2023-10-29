@@ -1,0 +1,111 @@
+<div class="flex-auto flex flex-col">
+
+    <header class="flex items-center px-6 py-8 md:px-6 lg:p-8 border-b bg-card">
+        <mat-icon
+            class="icon-size-7"
+            [svgIcon]="'mat_outline:people'"></mat-icon>
+        <h2 class="font-semibold text-xl ml-4">
+            Lista de usuários
+        </h2>
+    </header>
+
+    <div class="flex flex-auto overflow-hidden">
+
+        <div class="flex flex-col flex-auto overflow-hidden sm:overflow-y-auto sm:mb-18">
+            <ng-container *ngIf="usuarios.length > 0; else nenhumUsuario">
+                <div class="grid">
+                    <!-- Header -->
+                    <div
+                        class="usuarios-grid z-10 sticky top-0 grid gap-4 py-4 px-6 md:px-8 shadow text-md font-semibold text-secondary bg-gray-50">
+                        <div class="block">
+                            Name
+                        </div>
+                        <div class="hidden sm:block">
+                            Price
+                        </div>
+                        <div class="hidden lg:block">
+                            Stock
+                        </div>
+                        <div class="hidden lg:block">
+                            Active
+                        </div>
+                        <div class="hidden sm:block">Details</div>
+                    </div>
+                    <!-- Rows -->
+                    <ng-container *ngFor="let usuario of usuarios">
+                        <div class="usuarios-grid grid items-center gap-4 py-3 px-6 md:px-8 border-b">
+
+                            <!-- Name -->
+                            <div class="truncate">
+                                {{usuario.nome}}
+                            </div>
+
+                            <!-- Price -->
+                            <div class="hidden sm:block">
+                                {{usuario.price | currency:'USD':'symbol':'1.2-2'}}
+                            </div>
+
+                            <!-- Stock -->
+                            <div class="hidden lg:flex items-center">
+                                <div class="min-w-4">{{usuario.stock}}</div>
+                                <!-- Low stock -->
+                                <div
+                                    class="flex items-end ml-2 w-1 h-4 bg-red-200 rounded overflow-hidden"
+                                    *ngIf="usuario.stock < 20">
+                                    <div class="flex w-full h-1/3 bg-red-600"></div>
+                                </div>
+                                <!-- Medium stock -->
+                                <div
+                                    class="flex items-end ml-2 w-1 h-4 bg-orange-200 rounded overflow-hidden"
+                                    *ngIf="usuario.stock >= 20 && usuario.stock < 30">
+                                    <div class="flex w-full h-2/4 bg-orange-400"></div>
+                                </div>
+                                <!-- High stock -->
+                                <div
+                                    class="flex items-end ml-2 w-1 h-4 bg-green-100 rounded overflow-hidden"
+                                    *ngIf="usuario.stock >= 30">
+                                    <div class="flex w-full h-full bg-green-400"></div>
+                                </div>
+                            </div>
+
+                            <!-- Active -->
+                            <div class="hidden lg:block">
+                                <ng-container *ngIf="usuario.active">
+                                    <mat-icon
+                                        class="text-green-400 icon-size-5"
+                                        [svgIcon]="'heroicons_solid:check'"></mat-icon>
+                                </ng-container>
+                                <ng-container *ngIf="!usuario.active">
+                                    <mat-icon
+                                        class="text-gray-400 icon-size-5"
+                                        [svgIcon]="'heroicons_solid:x'"></mat-icon>
+                                </ng-container>
+                            </div>
+
+                            <!-- Details button -->
+                            <div>
+                                <button
+                                    class="min-w-10 min-h-7 h-7 px-2 leading-6"
+                                    mat-stroked-button
+                                    (click)="toggleDetails(usuario.id)">
+                                    <mat-icon
+                                        class="icon-size-5"
+                                        [svgIcon]="selectedusuario?.id === usuario.id ? 'heroicons_solid:chevron-up' : 'heroicons_solid:chevron-down'"></mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </ng-container>
+
+            <ng-template #nenhumUsuario>
+                <div class="p-8 sm:p-16 border-t text-4xl font-semibold tracking-tight text-center">
+                    Não há usuários para listar!
+                </div>
+            </ng-template>
+
+        </div>
+
+    </div>
+
+</div>
